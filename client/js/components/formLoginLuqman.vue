@@ -1,18 +1,3 @@
-<template>
-<div>
-    <h1> Ini Form Login </h1>
-    <form class="col-sm-3" @submit.prevent="loginUser">
-        <label>Email</label>
-        <input v-model="login.email" type="email" class="form-control" placeholder="Enter email">
-        <label>Password</label>
-        <input v-model="login.password" type="password" class="form-control" placeholder="Enter password">
-        <input type="submit" value="login" >
-    </form>
-</div>
-    
-    
-</template>
-
 <script>
 import axios from 'axios'
 

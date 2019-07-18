@@ -10,7 +10,7 @@ router.post('/googleCloudStorage',
     images.multer.single('file'), 
     images.sendUploadToGCS,
     (req,res,next)=>{
-      console.log(req.file)
+      console.log(req.file, "=================")
         let imageLink = req.file.cloudStoragePublicUrl
         console.log(imageLink)
         res.status(200).json(imageLink)

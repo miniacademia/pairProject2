@@ -14,13 +14,10 @@
 </template>
 <script>
 import axios from "axios"
-import Title from "./Title"
+// import Title from "./Title"
 
 export default {
   name: "AddFile",
-  components: {
-    Title
-  },
   data() {
     return {
       fileUrl: '',

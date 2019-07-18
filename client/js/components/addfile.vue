@@ -1,63 +1,26 @@
 <template>
-    <div>
-        <div class="card text-center">
-            <div class="card-header">
-                Upload Journal
-            </div>
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Upload Journal</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input v-model="title" type="text" class="form-control" placeholder="Your journal title" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">Title Journal</span>
-                        </div>
-                    </div>
-                    <div class="custom-file">
-                        <input @change="onFilePicked" type="file" class="custom-file-input" id="inputGroupFile01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Description your journal</span>
-                        </div>
-                        <textarea v-model="description" class="form-control" aria-label="With textarea"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer text-muted">
-                <button @click.prevent="upload" class="btn btn-outline-info" type="submit">Add Journal</button>
-            </div>
-        </div>
-    </div>
+  <form>
+    <label for="title"> Title</label>
+    <input type="text" v-model="title">
+    <br>
+    <label for="description">Description </label>
+    <input type="text" v-model="description">
+    <br>
+    <label for="file">Input File</label>
+    <input type="file" @change="onFilePicked">
+    <br>
+    <button @click.prevent="upload">Submit</button>
+  </form>
 </template>
-
-<script>
-export default {
-    data(){
-        return {}
-    },
-    // methods:{
-    //     register(){
-    //         this.$emit('goregister', 'register')
-    //     }
-    // }
-
-}
-</script>
-
-<style>
-
-</style>
-
 <script>
 import axios from "axios"
-// import Title from "./Title"
+import Title from "./Title"
 
 export default {
   name: "AddFile",
+  components: {
+    Title
+  },
   data() {
     return {
       fileUrl: '',

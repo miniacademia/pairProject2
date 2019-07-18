@@ -24,7 +24,7 @@ class UserController {
         // console.log(input);
         User.create(input)
             .then((dataCreated) => {
-                res.status(201).json({dataCreated:dataCreated,token:emailToken})
+                res.status(201).json({dataCreated:dataCreated})
             })
             .catch(next)
     }

@@ -10,6 +10,9 @@
         <register v-if="page == 'register'" @gologin="gologin"></register>
         <login v-if="page == 'login-page'" @goregister="goregister"></login>
         <uploadJournal v-if="page == 'create-page'"></uploadJournal>
+         <formRegister></formRegister>
+    <formLogin></formLogin>
+
       </div>
   </div>
 </template>
@@ -24,6 +27,12 @@ import login from './components/login'
 import uploadJournal from './components/addfile'
 import content from './components/content'
 
+//bellom dibenerin
+
+
+import formRegister from './components/formRegisterLuqman.vue'
+import formLogin from './components/formLoginLuqman.vue'
+
 export default {
   data() {
     return {
@@ -34,7 +43,9 @@ export default {
   components: {
       mainusers, content,
       mainlogin, uploadJournal,
-      headers, foo, register, login
+      headers, foo, register, login,
+       formRegister,
+    formLogin
   },
   methods:{
       gohome(value){
@@ -52,7 +63,7 @@ export default {
       godashboard(value){
           this.page=value
       }
-  }
+    }
 };
 </script>
 

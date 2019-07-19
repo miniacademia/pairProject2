@@ -1,10 +1,8 @@
 <template>
-    <main id="mainAllUsers">
-        <br>
-        <div id="content-page2" style="display: flex;" >
+        <div class="hai" style="display: flex;" >
           <div style="justify-content: center" class="col">
             <div class="row">
-              <h1>Mini Academia</h1>
+              <h1 id="content-page2">Mini Academia</h1>
             </div>
             <h2>Join 90,448,712 Academics</h2>
             <p>Academia is the easiest way to share papers with millions of people across the world for </p>
@@ -16,8 +14,10 @@
             <button class="btn btn-outline-danger">Google</button>
             <button class="btn btn-outline-info">Facebook</button>
           </div>
+          <div class="row">
+            <img src="../../assets/person.png" alt="img-page">
+          </div>
       </div>
-    </main>
 </template>
 
 <script>
@@ -36,6 +36,17 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .hai{
+    margin-top: 150px;
+  }
+  img{
+    /* opacity: 0.5; */
+    margin-right: 50px;
+  }
+  #content-page2 {
+    opacity: 0.5;
+    color: #37a4cd;
+  }
 </style>
+

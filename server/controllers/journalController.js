@@ -21,6 +21,16 @@ class JournalController {
       })
       .catch(next)
   }
+
+  static deleteJournal(req, res, next){
+    const id = req.decoded.id
+    Journal.findByIdAndDelete({_id: id})
+    .then(response => {
+        console.log(response)
+        res.status(200).json(response)
+    })
+    .catch(next)
+  }
 }
 
 module.exports = JournalController

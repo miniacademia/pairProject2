@@ -19,6 +19,9 @@
                 </ul>
             </li>
             <li>
+                <a @click="journals" href="#" disabled>Journals</a>
+            </li>
+            <li>
                 <a href="#">Profile</a>
             </li>
             <li>
@@ -51,6 +54,11 @@
 export default {
     data(){
         return {}
+    },
+    methods:{
+        journals(){
+            this.$emit('gorjournals', 'journals')
+        }
     }
 }
 </script>

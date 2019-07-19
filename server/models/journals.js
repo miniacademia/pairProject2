@@ -17,7 +17,7 @@ const JournalSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
-},{timestamps:true})
+}, {timestamps: true})
 const Journal = mongoose.model('Journal',JournalSchema)
 // const mongoose = require('mongoose')
 

@@ -27,7 +27,7 @@ export default {
     },
     methods:{
       home(){
-        this.$emit('gohome', 'home')
+        this.$emit('gohome', 'login-page')
       },
       register(){
         this.$emit('goregister', 'register')

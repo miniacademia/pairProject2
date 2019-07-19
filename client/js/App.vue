@@ -1,18 +1,26 @@
 <template>
   <div>
-      <headers v-if="page !== 'login' && page !== 'register'" @gocreate="gocreate" @godashboard='godashboard'></headers>
-      <mainusers v-if="page == 'login'" 
-      @gohome="gohome"
-      @goregister="goregister"></mainusers>
-      <content v-if="page == 'home'"></content>
-      <mainlogin v-if="page == 'home'"></mainlogin>
+      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard'></headers>
+      <div class="row">
+        <div class="col-sm-3">
+          <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'"></sidebar>
+        </div>
+        <div class="col-sm-6">
+          <!-- <content v-if="page == 'home'" ></content> -->
+          <dashboardlive v-if="page == 'home'" class="offset-3"></dashboardlive>
+          <mainlogin v-if="page == 'home'" class="offset-3"></mainlogin>
+          <uploadJournal v-if="page == 'create-page'" ></uploadJournal>
+        </div>
+      </div>
+      <div class="d-flex" >
+        <mainusers v-if="page == 'login'" 
+        @gohome="gohome"
+        @goregister="goregister"
+        class="d-flex row-sm offset-3"></mainusers>
+      </div>
       <div class="d-flex justify-content-center">
         <register v-if="page == 'register'" @gologin="gologin"></register>
         <login v-if="page == 'login-page'" @goregister="goregister"></login>
-        <uploadJournal v-if="page == 'create-page'"></uploadJournal>
-         <formRegister></formRegister>
-    <formLogin></formLogin>
-
       </div>
   </div>
 </template>
@@ -26,6 +34,8 @@ import register from './components/register'
 import login from './components/login'
 import uploadJournal from './components/addfile'
 import content from './components/content'
+import sidebar from './components/sidebar'
+import dashboardlive from './components/dashboardlive'
 
 //bellom dibenerin
 
@@ -41,29 +51,27 @@ export default {
     };
   },
   components: {
-      mainusers, content,
-      mainlogin, uploadJournal,
-      headers, foo, register, login,
-       formRegister,
-    formLogin
+      mainusers, content, sidebar,
+      mainlogin, uploadJournal, dashboardlive,
+      headers, foo, register, login
   },
   methods:{
-      gohome(value){
-          this.page = value
-      },
-      goregister(value){
-          this.page = value
-      },
-      gologin(value){
-          this.page = value
-      },
-      gocreate(value){
-          this.page=value
-      },
-      godashboard(value){
-          this.page=value
-      }
+    gohome(value){
+        this.page = value
+    },
+    goregister(value){
+        this.page = value
+    },
+    gologin(value){
+        this.page = value
+    },
+    gocreate(value){
+        this.page=value
+    },
+    godashboard(value){
+        this.page=value
     }
+  }
 };
 </script>
 

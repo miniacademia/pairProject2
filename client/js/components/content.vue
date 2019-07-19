@@ -1,5 +1,4 @@
 <template>
-    <div>
         <div class="card text-center">
             <div class="card-header">
                     Journal Title
@@ -13,7 +12,6 @@
                 2 days ago
             </div>
         </div>
-    </div>
 </template>
 
 <script>

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="container">
         <div class="card text-center">
             <div class="card-header">
-                Upload Journal
+                Upload Journal 🌎
             </div>
             <div class="card-body">
                 <div class="input-group mb-3">
@@ -48,10 +48,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .container{
+        padding-top: 100px;
+    }
 </style>
 
+<<<<<<< HEAD
 <script>
 import axios from "axios"
 // import Title from "./Title"
@@ -92,3 +95,5 @@ export default {
 <style>
 
 </style>
+=======
+>>>>>>> benerin dash

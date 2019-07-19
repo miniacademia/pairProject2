@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- <h1>hei</h1> -->
          <div class="card text-center" v-for="yourJournal in yourJournals" :key="yourJournal._id">
             <div class="card-header">
                    {{yourJournal.title}}
@@ -23,6 +24,12 @@ export default {
     data() {
         return {
             keysearchResult: [],
+            yourJournals: []
+        }
+    },
+    created() {
+        if(localStorage.getItem('token')) {
+            this.getYourJournals()
         }
     },
     methods: {
@@ -48,6 +55,7 @@ export default {
                 }
             })
                 .then(({data}) => {
+                    console.log(data)
                     this.yourJournals = data
                     console.log(this.yourJournals)
                 })

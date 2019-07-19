@@ -23,12 +23,6 @@ export default {
     data() {
         return {
             keysearchResult: [],
-            yourJournals: [],
-        }
-    },
-    created() {
-        if(localStorage.getItem('token')) {
-            this.getYourJournals()
         }
     },
     methods: {
@@ -74,22 +68,25 @@ export default {
                 this.keysearchResult = []
                 data.forEach(element => {
                     if (element.title.toLowerCase().includes(this.keysearch.toLowerCase())) {
-                        this.keysearch.push(element)
+                        this.keysearchResult.push(element)
                         console.log('masuk sini')
-                        this.answer2 = 'Waiting for you stop writing . . .'
+                        this.answer2 = 'Waiting you stop writing . . .'
+                        this.search = ''
                         return
                     } else {
+                        this.search = ''
                         this.answer2 = 'not found 😭'
                     }
                 })
             })
             .catch(err => {
+                        this.search = ''
                 console.log(err)
             })
         }
     },
     watch:{
-        search: function (newQuestion, oldQuestion) {
+        keysearch: function (newQuestion, oldQuestion) {
             // console.log('proses methods fetch database')
             this.searchJournal()
         }

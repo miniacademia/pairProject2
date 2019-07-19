@@ -6,7 +6,7 @@ class JournalController {
       title: req.body.title,
       description: req.body.description,
       fileUrl: req.body.fileUrl,
-      // userId: req.decoded._id
+      userId: req.decoded._id
     })
       .then((journalCreated) => {
         res.status(201).json(journalCreated)
@@ -15,7 +15,7 @@ class JournalController {
   }
 
   static findAllJournal(req,res,next) {
-    Journal.find()
+    Journal.find().populate('userId')
       .then((journalFound) => {
         res.status(200).json(journalFound)
       })

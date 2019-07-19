@@ -2,11 +2,12 @@ const Journal = require('../models/journals')
 
 class JournalController {
   static addFile(req,res,next) {
+    console.log(req.decoded)
     Journal.create({
       title: req.body.title,
       description: req.body.description,
       fileUrl: req.body.fileUrl,
-      // userId: req.decoded._id
+      userId: req.decoded._id
     })
       .then((journalCreated) => {
         res.status(201).json(journalCreated)
@@ -23,7 +24,7 @@ class JournalController {
   }
 
   static deleteJournal(req, res, next){
-    const id = req.decoded.id
+    const id = req.params.id
     Journal.findByIdAndDelete({_id: id})
     .then(response => {
         console.log(response)
@@ -31,6 +32,8 @@ class JournalController {
     })
     .catch(next)
   }
+
+  
 }
 
 module.exports = JournalController

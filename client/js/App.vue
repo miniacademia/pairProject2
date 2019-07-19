@@ -1,14 +1,14 @@
 <template>
   <div>
-      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard' @gojournals='gojournals'></headers>
+      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard' @gojournals='gojournals' @searching="searchInput"></headers>
       <div class="row">
         <div class="col-sm-3">
           <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gorjournals="gojournals"></sidebar>
         </div>
         <div class="col-sm-6">
           <!-- <content v-if="page == 'home'" ></content> -->
-          <dashboardlive v-if="page == 'home'" class="offset-3"></dashboardlive>
-          <mainlogin v-if="page == 'journals'" class="offset-3"></mainlogin> 
+          <dashboardlive v-if="page == 'home'" class="offset-3" v-bind:keys="search"></dashboardlive>
+          <mainlogin v-if="page == 'journals'" class="offset-3" v-bind:keysearch="search"></mainlogin> 
           <uploadJournal v-if="page == 'create-page'" ></uploadJournal>
         </div>
       </div>
@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       message: 'Hello world',
-      page: 'login'
+      page: 'login',
+      search: ''
     };
   },
   components: {
@@ -66,15 +67,18 @@ export default {
         this.page = value
     },
     gocreate(value){
-        this.page=value
+        this.page = value
     },
     godashboard(value){
-        this.page=value
+        this.page = value
     },
     gojournals(value){
-        this.page=value
+        this.page = value
+    },
+    searchInput(value){
+      this.search = value
     }
-  }
+  },
 };
 </script>
 

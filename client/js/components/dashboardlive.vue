@@ -7,6 +7,7 @@
         </div>
         <hr>
         <p>date</p>
+        <a href="https://twitter.com/intent/tweet?text=Hello%20world"><img src="http://pngimg.com/uploads/twitter/twitter_PNG9.png" width="30" height="30" alt="Twitter"></a>
         <hr>
     </div>
 </template>

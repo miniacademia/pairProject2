@@ -8,6 +8,7 @@
         <div class="form-inline">
             <button @click="dashboard" class="btn btn-outline-info justify-content-end glyphicon glyphicon-search" type="button">dashboard</button>
             <button @click="create" class="btn btn-outline-info justify-content-end glyphicon glyphicon-search" type="button">Create</button>
+            <button @click="logout" class="btn btn-outline-info justify-content-end glyphicon glyphicon-search" type="button">Signout</button>
         </div>
       </nav>
     </header>
@@ -31,6 +32,11 @@ export default {
         },
         searching(){
             this.$emit('searching', this.search)
+        },
+        logout(){
+            localStorage.clear()
+            Swal.fire('You have logged out succesfully')
+            this.$emit('signout', 'login')
         }
     },
     watch:{

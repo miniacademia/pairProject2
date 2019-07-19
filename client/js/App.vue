@@ -1,6 +1,6 @@
 <template>
   <div>
-      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard' @searching="searchInput"></headers>
+      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @signout="gologin" @godashboard='godashboard' @gojournals='gojournals' @searching="searchInput"></headers>
       <div class="row">
         <div class="col-sm-3">
           <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gojournals="gojournals"></sidebar>
@@ -50,6 +50,11 @@ export default {
       page: 'login',
       search: ''
     };
+  },
+  created() {
+    if(localStorage.getItem('token')) {
+      this.page = 'home'
+    }
   },
   components: {
       mainusers, content, sidebar,

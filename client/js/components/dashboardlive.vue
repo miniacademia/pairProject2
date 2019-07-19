@@ -5,8 +5,12 @@
                 <h5 class="card-title">{{allJournal.title}}</h5>
                     <p class="card-text">{{allJournal.description}}</p>
                 <h6 class="card-subtitle mb-2 text-muted">{{moment(allJournal.createdAt).fromNow()}}</h6>
-                <a v-bind:href="allJournal.fileUrl">Download my file here!</a download>
+                <a v-bind:href="allJournal.fileUrl">Download my file here!</a>
         </div>
+        <hr>
+        <p>date</p>
+        <a href="https://twitter.com/intent/tweet?text=Hello%20world"><img src="http://pngimg.com/uploads/twitter/twitter_PNG9.png" width="30" height="30" alt="Twitter"></a>
+        <hr>
     </div>
 </template>
 

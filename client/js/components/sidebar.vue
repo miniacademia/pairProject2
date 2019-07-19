@@ -19,7 +19,7 @@
                 </ul>
             </li>
             <li>
-                <a @click="journals" href="#" disabled>Your Journals</a>
+                <a @click="journals" href="#" >Your Journals</a>
             </li>
             <li>
                 <a href="#">Profile</a>
@@ -57,7 +57,8 @@ export default {
     },
     methods:{
         journals(){
-            this.$emit('gorjournals', 'journals')
+            console.log('masuk sini....journals')
+            this.$emit('gojournals', 'journals')
         }
     }
 }

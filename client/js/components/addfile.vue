@@ -77,6 +77,7 @@ export default {
         formData.append('file', files[0])
         axios.post("http://localhost:3000/api/users/googleCloudStorage", formData)
           .then(response =>{
+            console.log(response)
             this.fileUrl = response.data
           // console.log(response.data)
           })

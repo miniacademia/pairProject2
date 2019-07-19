@@ -52,10 +52,15 @@ export default {
                 data: this.register,
             })
             .then(({data})=>{
-                res.status(201).json(data)
+                Swal.fire('User created Sucessfully, please login')
             })
             .catch((err)=>{
                 console.log(err)
+                Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: err.message,
+                })
             })
         }
     }

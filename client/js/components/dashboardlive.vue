@@ -11,10 +11,6 @@
                 <a href='https://twitter.com/intent/tweet?text=check%20my%20awesome%20jurnal:%20title%20'><img src="http://pngimg.com/uploads/twitter/twitter_PNG9.png" width="30" height="30" alt="Twitter"></a>
          </div>
         </div>
-        <hr>
-        <p>date</p>
-        
-        <hr>
     </div>
 </template>
 

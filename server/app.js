@@ -16,7 +16,7 @@ app.use(cors())
 mongoose.connect(process.env.MONGODB, {useNewUrlParser: true});
 
 const userRoutes = require('./routes/userRoutes')
-// const todoRoutes = require('./routes/todoRoutes')
+const journalRoutes = require('./routes/journalRoutes')
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('masuk')
@@ -24,7 +24,7 @@ db.once('open', function() {
 });
 
 app.use('/api/users',userRoutes)
-// app.use('/api/todos',todoRoutes)
+app.use('/api/journals',journalRoutes)
 
 
 app.use(errorHandlers)

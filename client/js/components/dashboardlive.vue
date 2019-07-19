@@ -14,7 +14,22 @@
 <script>
 export default {
     data(){
-        return {}
+        return {
+            title: '',
+            description: '',
+            
+        }
+    },
+    methods:{
+       getAllJournal() {
+           axios.get('http://localhost:3000/api/journals/allJournal')
+            .then(({data}) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err.response.data.message)
+            })
+       },
     }
 }
 </script>

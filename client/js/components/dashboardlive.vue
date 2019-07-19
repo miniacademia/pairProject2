@@ -19,11 +19,12 @@
 import axios from "axios"
 import moment from "moment"
 export default {
-    props: ['keys'],
+    props: ['keysearch'],
     data(){
         return {
             title: '',
             description: '',
+            search: '',
             keysearchResult: [],
             allJournals: []
         }
@@ -46,24 +47,29 @@ export default {
        },
        searchJournal(){
             console.log(this.keys)
+            this.search = this.keysearch
             axios({
                 method: 'GET',
                 url: 'http://localhost:3000/api/journals/allJournal',
             })
             .then(({data})=>{
-                this.keysearchResult = []
+                console.log(data,this.keysearch, 'search')
+                this.allJournals = []
                 data.forEach(element => {
-                    if (element.title.toLowerCase().includes(this.keys.toLowerCase())) {
-                        this.keys.push(element)
-                        console.log('masuk sini')
-                        this.answer2 = 'Waiting you stop writing . . .'
+                    if (element.title.toLowerCase().includes(this.keysearch.toLowerCase())) {
+                        this.allJournals.push(element)
+                        console.log('masuk sini nih')
+                        this.answer2 = 'Waiting for you stop writing . . .'
+                        this.search = ''
                         return
                     } else {
+                        this.search = ''
                         this.answer2 = 'not found 😭'
                     }
                 })
             })
             .catch(err => {
+                this.search = ''
                 console.log(err)
             })
         },
@@ -72,7 +78,7 @@ export default {
        }
     },
     watch:{
-        search: function (newQuestion, oldQuestion) {
+        keysearch: function (newQuestion, oldQuestion) {
             // console.log('proses methods fetch database')
             this.searchJournal()
         }

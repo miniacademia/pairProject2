@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script>
+<script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 import mainusers from './components/mainusers'
 import mainlogin from './components/mainlogin'
 import headers from './components/headers'
@@ -73,6 +73,7 @@ export default {
         this.page = value
     },
     gojournals(value){
+        console.log(value)
         this.page = value
     },
     searchInput(value){

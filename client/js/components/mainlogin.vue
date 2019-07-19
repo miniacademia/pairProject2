@@ -42,7 +42,12 @@ export default {
             searchJournals: []
         }
     },
-    created(){
+    // created(){
+    //         keysearchResult: [],
+    //         yourJournals: []
+    //     }
+    // },
+    created() {
         if(localStorage.getItem('token')) {
             this.getYourJournals()
         }
@@ -70,6 +75,7 @@ export default {
                 }
             })
                 .then(({data}) => {
+                    console.log(data)
                     this.yourJournals = data
                     console.log(this.yourJournals)
                 })

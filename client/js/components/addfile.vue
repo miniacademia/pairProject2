@@ -18,6 +18,12 @@
                     <div class="custom-file">
                         <input @change="onFilePicked" type="file" class="custom-file-input" id="inputGroupFile01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <span></span>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">{{fileName}}</span>
+                        </div>
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -54,7 +60,6 @@ export default {
     }
 </style>
 
-<<<<<<< HEAD
 <script>
 import axios from "axios"
 // import Title from "./Title"
@@ -66,6 +71,7 @@ export default {
       fileUrl: '',
       title: '',
       description: '',
+      fileName: ''
     }
   },
   methods: {
@@ -73,20 +79,37 @@ export default {
       // this.loading = true
       // this.imageUrl = ""
         const files = e.target.files
+           if(files[0] !== undefined) {
+                    this.fileName = files[0].name
+                    if(this.fileName.lastIndexOf('.') <= 0) {
+                        return
+                    }
+           }
         const formData = new FormData()
         formData.append('file', files[0])
         axios.post("http://localhost:3000/api/users/googleCloudStorage", formData)
           .then(response =>{
-            console.log(response)
+            // this.file = response.originalname
             this.fileUrl = response.data
+            console.log(this.fileUrl)
           // console.log(response.data)
           })
           .catch(err =>{
-            console.log(err.response)
+            console.log(err.response.data.message)
           })
     },
     upload() {
-      axios.post("http://localhost:3000/api/")
+      axios.post("http://localhost:3000/api/journals/addFile", {
+          fileUrl: this.fileUrl,
+          title: this.title,
+          description: this.description,
+      })
+        .then(({data}) => {
+            console.log(data)
+        })
+        .catch((err) => {
+            console.log(err.response.data.message)
+        })
     }
   },
 
@@ -96,5 +119,3 @@ export default {
 <style>
 
 </style>
-=======
->>>>>>> benerin dash

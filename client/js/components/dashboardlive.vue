@@ -4,6 +4,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{allJournal.title}}</h5>
                     <p class="card-text">{{allJournal.description}}</p>
+                    <span>Created By: {{allJournal.userId.username}}</span>
+                    <br>
                 <h6 class="card-subtitle mb-2 text-muted">{{moment(allJournal.createdAt).fromNow()}}</h6>
                 <a v-bind:href="allJournal.fileUrl">Download my file here!</a download>
          </div>
@@ -39,7 +41,6 @@ export default {
            axios.get('http://localhost:3000/api/journals/allJournal')
             .then(({data}) => {
                 this.allJournals = data
-                console.log(this.allJournals)
             })
             .catch((err) => {
                 console.log(err.response.data.message)

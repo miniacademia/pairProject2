@@ -11,6 +11,7 @@
             </div>
             <div class="card-footer text-muted">
                 2 days ago (time)
+                <button class="btn btn-outline-danger" type="submit">Delete</button>
             </div>
         </div>
     </div>
@@ -20,6 +21,11 @@
 export default {
     data() {
         return {}
+    },
+    methods: {
+        delete(){
+            // dunno
+        }
     }
 }
 </script>

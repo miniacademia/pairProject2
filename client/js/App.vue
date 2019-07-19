@@ -1,14 +1,14 @@
 <template>
   <div>
-      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard'></headers>
+      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard' @gojournals='gojournals'></headers>
       <div class="row">
         <div class="col-sm-3">
-          <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'"></sidebar>
+          <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gorjournals="gojournals"></sidebar>
         </div>
         <div class="col-sm-6">
           <!-- <content v-if="page == 'home'" ></content> -->
           <dashboardlive v-if="page == 'home'" class="offset-3"></dashboardlive>
-          <mainlogin v-if="page == 'home'" class="offset-3"></mainlogin>
+          <mainlogin v-if="page == 'journals'" class="offset-3"></mainlogin> 
           <uploadJournal v-if="page == 'create-page'" ></uploadJournal>
         </div>
       </div>
@@ -69,6 +69,9 @@ export default {
         this.page=value
     },
     godashboard(value){
+        this.page=value
+    },
+    gojournals(value){
         this.page=value
     }
   }

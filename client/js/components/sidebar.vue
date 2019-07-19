@@ -19,7 +19,7 @@
                 </ul>
             </li>
             <li>
-                <a @click="journals" href="#" disabled>Journals</a>
+                <a @click="journals" href="#" disabled>Your Journals</a>
             </li>
             <li>
                 <a href="#">Profile</a>

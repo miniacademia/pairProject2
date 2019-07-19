@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <div v-if="searchJournals.length === 0">
          <div class="card text-center" v-for="yourJournal in yourJournals" :key="yourJournal._id">
             <div class="card-header">
                    {{yourJournal.title}}
@@ -12,6 +13,21 @@
             <button @click.prevent="deleteJournal(yourJournal._id)" class="btn btn-outline-danger" type="submit">Delete</button>
             </div>
         </div>
+        </div>
+        <div v-if="searchJournals.length !== 0">
+            <div class="card text-center" v-for="yourJournal in searchJournals" :key="yourJournal._id">
+                <div class="card-header">
+                    {{yourJournal.title}}
+                </div>
+                <div class="card-body">
+                    <p> {{yourJournal.description}} </p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{moment(yourJournal.createdAt).fromNow()}}
+                <button @click.prevent="deleteJournal(yourJournal._id)" class="btn btn-outline-danger" type="submit">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -22,7 +38,13 @@ export default {
     props: ['keysearch'],
     data() {
         return {
-            keysearchResult: [],
+            yourJournals: [],
+            searchJournals: []
+        }
+    },
+    created(){
+        if(localStorage.getItem('token')) {
+            this.getYourJournals()
         }
     },
     methods: {
@@ -60,29 +82,38 @@ export default {
         },
         searchJournal(){
             console.log(this.keysearch)
-            axios({
-                method: 'GET',
-                url: 'http://localhost:3000/api/journals/journalByUser',
-            })
-            .then(({data})=>{
-                this.keysearchResult = []
+            // axios({
+            //     method: 'GET',
+            //     url: 'http://localhost:3000/api/journals/journalByUser',
+            // },{
+            //      headers: {
+            //         'token': localStorage.getItem('token')
+            //     }
+            // })
+            // .then(({data})=>{
+                let data = this.yourJournals
+                this.searchJournals = []
                 data.forEach(element => {
                     if (element.title.toLowerCase().includes(this.keysearch.toLowerCase())) {
-                        this.keysearchResult.push(element)
+                        this.searchJournals.push(element)
                         console.log('masuk sini')
                         this.answer2 = 'Waiting you stop writing . . .'
-                        this.search = ''
+                        // this.keysearch = ''
+                        // this.yourJournals = this.getYourJournals()
                         return
                     } else {
-                        this.search = ''
+                        // this.keysearch = ''
+                        // this.getYourJournals()
                         this.answer2 = 'not found 😭'
                     }
                 })
-            })
-            .catch(err => {
-                        this.search = ''
-                console.log(err)
-            })
+
+                if(this.keysearch === '') this.searchJournals = []
+            // })
+            // .catch(err => {
+            //             this.search = ''
+            //     console.log(err)
+            // })
         }
     },
     watch:{

@@ -1,9 +1,9 @@
 <template>
   <div>
-      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard' @gojournals='gojournals' @searching="searchInput"></headers>
+      <headers v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gocreate="gocreate" @godashboard='godashboard' @searching="searchInput"></headers>
       <div class="row">
         <div class="col-sm-3">
-          <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gorjournals="gojournals"></sidebar>
+          <sidebar v-if="page !== 'login' && page !== 'register' && page !== 'login-page'" @gojournals="gojournals"></sidebar>
         </div>
         <div class="col-sm-6">
           <!-- <content v-if="page == 'home'" ></content> -->

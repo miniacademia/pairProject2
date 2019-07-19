@@ -16,7 +16,7 @@ class JournalController {
   }
 
   static findAllJournal(req,res,next) {
-    Journal.find()
+    Journal.find().populate('userId')
       .then((journalFound) => {
         res.status(200).json(journalFound)
       })

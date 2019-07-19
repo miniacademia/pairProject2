@@ -103,7 +103,11 @@ export default {
           fileUrl: this.fileUrl,
           title: this.title,
           description: this.description,
-      })
+      },{
+            headers: {
+                'token': localStorage.getItem('token')
+            }
+        })
         .then(({data}) => {
             console.log(data)
         })

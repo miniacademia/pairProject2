@@ -1,31 +1,39 @@
 <template>
-    <div class="container">
-        <h4>Title Journal</h4>
-        <hr>
-        <div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem, quod quae nulla iure quos vel nam eius facilis distinctio, rerum explicabo necessitatibus et soluta doloremque maxime adipisci quidem, aut error!</p>
+    <div class="container" >
+        <div class="card" v-for="allJournal in allJournals" :key="allJournal._id">
+            <div class="card-body">
+                <h5 class="card-title">{{allJournal.title}}</h5>
+                    <p class="card-text">{{allJournal.description}}</p>
+                <h6 class="card-subtitle mb-2 text-muted">{{moment(allJournal.createdAt).fromNow()}}</h6>
+                <a v-bind:href="allJournal.fileUrl">Download my file here!</a download>
         </div>
-        <hr>
-        <p>date</p>
-        <hr>
     </div>
 </template>
 
 <script>
+import axios from "axios"
+import moment from "moment"
 export default {
     props: ['keys'],
     data(){
         return {
             title: '',
             description: '',
-            keysearchResult: []
+            keysearchResult: [],
+            allJournals: []
+        }
+    },
+    created() {
+        if(localStorage.getItem('token')) {
+            this.getAllJournal()
         }
     },
     methods:{
        getAllJournal() {
            axios.get('http://localhost:3000/api/journals/allJournal')
             .then(({data}) => {
-                console.log(data)
+                this.allJournals = data
+                console.log(this.allJournals)
             })
             .catch((err) => {
                 console.log(err.response.data.message)
@@ -53,7 +61,10 @@ export default {
             .catch(err => {
                 console.log(err)
             })
-        }
+        },
+         moment(date) {
+           return moment(date)
+       }
     },
     watch:{
         search: function (newQuestion, oldQuestion) {

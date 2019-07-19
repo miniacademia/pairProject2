@@ -109,6 +109,7 @@ export default {
             }
         })
         .then(({data}) => {
+            this.$emit('goToDashboard','home')
             console.log(data)
         })
         .catch((err) => {

@@ -1,23 +1,43 @@
 <template>
-        <div class="card text-center">
+    <div>
+        <div class="card text-center" v-for="yourJournal in yourJournals" :key="yourJournal._id">
             <div class="card-header">
-                    Journal Title
+                    {{yourJournal.title}}
             </div>
             <div class="card-body">
-                <h3>Title Journal</h3>
-                <img src="" alt="Journal Image">
-                <p> Description Journal </p>
+                <p> {{yourJournal.description}} </p>
             </div>
             <div class="card-footer text-muted">
-                2 days ago
+                {{moment(allJournal.createdAt).fromNow()}}
             </div>
         </div>
+    </div>
 </template>
 
 <script>
+import axios from "axios"
+import moment from "moment"
 export default {
     data(){
-        return {}
+        return {
+            yourJournals: []
+        }
+    },
+    created() {
+        if(localStoraget.getItem('token')) {
+            this.getYourJournals()
+        }
+    },
+    methods: {
+        getYourJournals() {
+            axios.get('http://localhost:3000/api/journals/journalByUser')
+                .then(({data}) => {
+                    this.yourJournals.push(data)
+                })
+        },
+        moment(date) {
+           return moment(date)
+       }
     }
 }
 </script>

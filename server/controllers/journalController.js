@@ -25,12 +25,20 @@ class JournalController {
 
   static deleteJournal(req, res, next){
     const id = req.params.id
-    Journal.findByIdAndDelete({_id: id})
+    Journal.findByIdAndDelete(id)
     .then(response => {
         console.log(response)
         res.status(200).json(response)
     })
     .catch(next)
+  }
+
+  static journalByUser(req,res,next) {
+    Journal.find({userId: req.decoded._id})
+      .then(dataFound => {
+        res.status(200).json(dataFound)
+      })
+      .catch(next)
   }
 
   

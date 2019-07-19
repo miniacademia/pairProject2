@@ -9,7 +9,7 @@
           <!-- <content v-if="page == 'home'" ></content> -->
           <dashboardlive v-if="page == 'home'" class="offset-3" v-bind:keys="search"></dashboardlive>
           <mainlogin v-if="page == 'journals'" class="offset-3" v-bind:keysearch="search"></mainlogin> 
-          <uploadJournal v-if="page == 'create-page'" ></uploadJournal>
+          <uploadJournal v-if="page == 'create-page'" @goToDashboard="gohome"></uploadJournal>
         </div>
       </div>
       <div class="d-flex" >

@@ -1,40 +1,74 @@
 <template>
     <div class="container">
-        <div class="card text-center">
+         <div class="card text-center" v-for="yourJournal in yourJournals" :key="yourJournal._id">
             <div class="card-header">
-                    Journal Title
+                   {{yourJournal.title}}
             </div>
             <div class="card-body">
-                <h3>Title Journal</h3>
-                <img src="" alt="Journal Image">
-                <p> Description Journal </p>
+                <p> {{yourJournal.description}} </p>
             </div>
             <div class="card-footer text-muted">
-                2 days ago (time)
-                <!-- @click.prevent="delete" -->
-                <button @click.prevent="deleteJournal"  class="btn btn-outline-danger" type="submit">Delete</button>
+                {{moment(yourJournal.createdAt).fromNow()}}
+            <button @click.prevent="deleteJournal(yourJournal._id)" class="btn btn-outline-danger" type="submit">Delete</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from "axios"
+import moment from "moment"
 export default {
     props: ['keysearch'],
     data() {
         return {
-            keysearchResult: []
+            keysearchResult: [],
+            yourJournals: [],
+        }
+    },
+    created() {
+        if(localStorage.getItem('token')) {
+            this.getYourJournals()
         }
     },
     methods: {
-        deleteJournal(){
+        deleteJournal(id){
+            axios.delete(`http://localhost:3000/api/journals/deleteJournal/${id}`,{
+                 headers: {
+                    'token': localStorage.getItem('token')
+                }
+            })
+                .then(({data}) => {
+                    this.getYourJournals()
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
             // dunno
+        },
+        getYourJournals() {
+            axios.get('http://localhost:3000/api/journals/journalByUser',{
+                headers: {
+                    'token': localStorage.getItem('token')
+                }
+            })
+                .then(({data}) => {
+                    this.yourJournals = data
+                    console.log(this.yourJournals)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        moment(date) {
+           return moment(date)
         },
         searchJournal(){
             console.log(this.keysearch)
             axios({
                 method: 'GET',
-                url: 'http://localhost:3000/api/journals/allJournal',
+                url: 'http://localhost:3000/api/journals/journalByUser',
             })
             .then(({data})=>{
                 this.keysearchResult = []
@@ -42,7 +76,7 @@ export default {
                     if (element.title.toLowerCase().includes(this.keysearch.toLowerCase())) {
                         this.keysearch.push(element)
                         console.log('masuk sini')
-                        this.answer2 = 'Waiting you stop writing . . .'
+                        this.answer2 = 'Waiting for you stop writing . . .'
                         return
                     } else {
                         this.answer2 = 'not found 😭'

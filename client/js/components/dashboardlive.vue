@@ -13,11 +13,12 @@
 
 <script>
 export default {
+    props: ['keys'],
     data(){
         return {
             title: '',
             description: '',
-            
+            keysearchResult: []
         }
     },
     methods:{
@@ -30,6 +31,35 @@ export default {
                 console.log(err.response.data.message)
             })
        },
+       searchJournal(){
+            console.log(this.keys)
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3000/api/journals/allJournal',
+            })
+            .then(({data})=>{
+                this.keysearchResult = []
+                data.forEach(element => {
+                    if (element.title.toLowerCase().includes(this.keys.toLowerCase())) {
+                        this.keys.push(element)
+                        console.log('masuk sini')
+                        this.answer2 = 'Waiting you stop writing . . .'
+                        return
+                    } else {
+                        this.answer2 = 'not found 😭'
+                    }
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    },
+    watch:{
+        search: function (newQuestion, oldQuestion) {
+            // console.log('proses methods fetch database')
+            this.searchJournal()
+        }
     }
 }
 </script>

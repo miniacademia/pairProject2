@@ -3,7 +3,7 @@
       <nav class="nav justify-content-between" style="margin-right: 30px;">
         <span><img src="../../assets/navbar.png" alt="logo mini academia" height="80"></span>
         <div class="form-inline">
-            <input class="form-control " type="search" placeholder="Search" aria-label="Search" style="width: 500px">
+            <input class="form-control " type="search" placeholder="Search" aria-label="Search" style="width: 500px" v-model="search">
         </div>
         <div class="form-inline">
             <button @click="dashboard" class="btn btn-outline-info justify-content-end glyphicon glyphicon-search" type="button">dashboard</button>
@@ -17,8 +17,10 @@
 <script>
 // import image from '../../img/logo.png'
 export default {
-    data(){
-        return{}
+    data() {
+        return {
+            search: ''
+        }
     },
     methods:{
         create(){
@@ -26,6 +28,15 @@ export default {
         },
         dashboard(){
             this.$emit('godashboard', 'home')
+        },
+        searching(){
+            this.$emit('searching', this.search)
+        }
+    },
+    watch:{
+        search: function (newQuestion, oldQuestion) {
+            // console.log('proses methods fetch database')
+            this.searching()
         }
     }
 }

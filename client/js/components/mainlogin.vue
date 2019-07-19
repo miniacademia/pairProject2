@@ -11,7 +11,8 @@
             </div>
             <div class="card-footer text-muted">
                 2 days ago (time)
-                <button class="btn btn-outline-danger" type="submit">Delete</button>
+                <!-- @click.prevent="delete" -->
+                <button @click.prevent="deleteJournal"  class="btn btn-outline-danger" type="submit">Delete</button>
             </div>
         </div>
     </div>
@@ -19,12 +20,44 @@
 
 <script>
 export default {
+    props: ['keysearch'],
     data() {
-        return {}
+        return {
+            keysearchResult: []
+        }
     },
     methods: {
-        delete(){
+        deleteJournal(){
             // dunno
+        },
+        searchJournal(){
+            console.log(this.keysearch)
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3000/api/journals/allJournal',
+            })
+            .then(({data})=>{
+                this.keysearchResult = []
+                data.forEach(element => {
+                    if (element.title.toLowerCase().includes(this.keysearch.toLowerCase())) {
+                        this.keysearch.push(element)
+                        console.log('masuk sini')
+                        this.answer2 = 'Waiting you stop writing . . .'
+                        return
+                    } else {
+                        this.answer2 = 'not found 😭'
+                    }
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    },
+    watch:{
+        search: function (newQuestion, oldQuestion) {
+            // console.log('proses methods fetch database')
+            this.searchJournal()
         }
     }
 }

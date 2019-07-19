@@ -20,7 +20,7 @@
       </div>
       <div class="d-flex justify-content-center">
         <register v-if="page == 'register'" @gologin="gologin"></register>
-        <login v-if="page == 'login-page'" @goregister="goregister"></login>
+        <login v-if="page == 'login-page'" @goregister="goregister" @gohome="gohome"></login>
       </div>
   </div>
 </template>

@@ -50,9 +50,15 @@ export default {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('name', data.username)
                 localStorage.setItem('email', data.email)
+                Swal.fire('Login Sucessfully')
+                this.$emit('gohome', 'home')
             })
             .catch((err)=>{
-                console.log(err)
+                Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'wrong password',
+                })
             })
         }
     }

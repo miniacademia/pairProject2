@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-primary">Sign in</button>
                     <button @click="register" type="button" class="btn btn-warning">Register</button>
             </div>
-            <div class="card-footer">Since 2019</div>
+            <div class="card-footer">Mini Academia</div>
         </div>
 </template>
 
@@ -32,6 +32,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .card{
+        margin-top: 100px;
+    }
 </style>
+
